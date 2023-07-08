@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <algorithm>
 
 class Item
 {
@@ -28,6 +29,7 @@ class Container
 
         void Insert(Item& item, int amount);
         void Remove(Item& item, int amount);
+        void Erase(Item& item);
         void Sort(bool ascending);
         void Open() const;
 
@@ -45,7 +47,7 @@ void Container::Insert(Item& item, int amount)
 
 void Container::Remove(Item& item, int amount)
 {
-    auto compareItemNames = [&item](const std::pair<Item, int> pair)
+    auto compareItemNames = [&item](const std::pair<Item, int>& pair)
     {
         return pair.first.GetName() == item.GetName();
     };
@@ -65,9 +67,41 @@ void Container::Remove(Item& item, int amount)
     }
 }
 
+void Container::Erase(Item& item)
+{
+    auto compareItemNames = [&item](const std::pair<Item, int>& pair)
+    {
+        return pair.first.GetName() == item.GetName();
+    };
+
+    auto it = std::find_if(mContainer.begin(), mContainer.end(), compareItemNames);
+
+    if (it != mContainer.end())
+    {
+        mContainer.erase(it);
+    }
+}
+
+
+using itemIntPair = std::pair<Item, int>;
+
 void Container::Sort(bool ascending)
 {
 
+    if (ascending == true)
+    {
+        std::sort(mContainer.begin(), mContainer.end(), [](const itemIntPair& a, const itemIntPair& b)
+            {
+                return a.first.GetName() < b.first.GetName();
+            });
+    }
+    else
+    {
+        std::sort(mContainer.begin(), mContainer.end(), [](const itemIntPair& a, const itemIntPair& b)
+            {
+                return a.first.GetName() > b.first.GetName();
+            });
+    }
 }
 
 void Container::Open() const
@@ -88,15 +122,31 @@ int main()
 {
     Item handgun("Handgun");
     Item medipack("Medipack");
+    Item key("Key");
+    Item map("Map");
+    Item goldBar("Gold Bar");
+    Item carKeys("Car Keys");
+    Item hammer("Hammer");
+    Item money("Money");
 
     Container playerInventory("Player Inventory");
 
     playerInventory.Insert(handgun, 1);
     playerInventory.Insert(medipack, 5);
+    playerInventory.Insert(key, 1);
+    playerInventory.Insert(map, 1);
+    playerInventory.Insert(goldBar, 2);
+    playerInventory.Insert(carKeys, 1);
+    playerInventory.Insert(hammer, 1);
+    playerInventory.Insert(money, 56);
 
     playerInventory.Open();
 
-    playerInventory.Remove(medipack, 6);
+    playerInventory.Remove(medipack, 4);
+
+    playerInventory.Sort(true);
+
+    std::cout << "\n\n";
 
     playerInventory.Open();
 }

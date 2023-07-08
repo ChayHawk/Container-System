@@ -62,7 +62,10 @@ void Container::Remove(Item& item, int amount)
         }
         else
         {
+            //We do not remove the item from the vector if there is 0, this is intended.
             std::cout << GetName() << " doesnt have " << amount << " " << it->first.GetName() << " in it!\n";
+            std::cout << "Removed " << it->second << " " << it->first.GetName() << " instead.\n";
+            it->second = 0;
         }
     }
 }
@@ -142,7 +145,7 @@ int main()
 
     playerInventory.Open();
 
-    playerInventory.Remove(medipack, 4);
+    playerInventory.Remove(medipack, 8);
 
     playerInventory.Sort(true);
 

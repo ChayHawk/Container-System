@@ -1,44 +1,4 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <utility>
-#include <algorithm>
-
-class Item
-{
-    public:
-        Item(const std::string& name) : mName(name)
-        {}
-
-        std::string GetName() const;
-
-    private:
-        std::string mName{ "Item Name" };
-};
-
-std::string Item::GetName() const
-{
-    return mName;
-}
-
-class Container
-{
-    public:
-        Container(const std::string& name) : mName(name)
-        {}
-
-        void Insert(Item& item, int amount);
-        void Remove(Item& item, int amount);
-        void Erase(Item& item);
-        void Sort(bool ascending);
-        void Open() const;
-
-        std::string GetName() const;
-
-    private:
-        std::string mName{ "Container Name" };
-        std::vector < std::pair<Item, int>> mContainer{ };
-};
+#include "Container.h"
 
 void Container::Insert(Item& item, int amount)
 {
@@ -119,37 +79,4 @@ void Container::Open() const
 std::string Container::GetName() const
 {
     return mName;
-}
-
-int main()
-{
-    Item handgun("Handgun");
-    Item medipack("Medipack");
-    Item key("Key");
-    Item map("Map");
-    Item goldBar("Gold Bar");
-    Item carKeys("Car Keys");
-    Item hammer("Hammer");
-    Item money("Money");
-
-    Container playerInventory("Player Inventory");
-
-    playerInventory.Insert(handgun, 1);
-    playerInventory.Insert(medipack, 5);
-    playerInventory.Insert(key, 1);
-    playerInventory.Insert(map, 1);
-    playerInventory.Insert(goldBar, 2);
-    playerInventory.Insert(carKeys, 1);
-    playerInventory.Insert(hammer, 1);
-    playerInventory.Insert(money, 56);
-
-    playerInventory.Open();
-
-    playerInventory.Remove(medipack, 8);
-
-    playerInventory.Sort(true);
-
-    std::cout << "\n\n";
-
-    playerInventory.Open();
 }

@@ -2,6 +2,7 @@
 
 #include "Container.h"
 #include "Item.h"
+#include "Player.h"
 
 
 int main()
@@ -15,24 +16,24 @@ int main()
     Item hammer("Hammer");
     Item money("Money");
 
-    Container playerInventory("Player Inventory");
+    Player player("Hero", 100);
 
-    playerInventory.Insert(handgun, 1);
-    playerInventory.Insert(medipack, 5);
-    playerInventory.Insert(key, 1);
-    playerInventory.Insert(map, 1);
-    playerInventory.Insert(goldBar, 2);
-    playerInventory.Insert(carKeys, 1);
-    playerInventory.Insert(hammer, 1);
-    playerInventory.Insert(money, 56);
+    player.AddItemToInventory(handgun, 1);
+    player.AddItemToInventory(medipack, 5);
+    player.AddItemToInventory(key, 1);
+    player.AddItemToInventory(map, 1);
+    player.AddItemToInventory(goldBar, 2);
+    player.AddItemToInventory(carKeys, 1);
+    player.AddItemToInventory(hammer, 1);
+    player.AddItemToInventory(money, 56);
 
-    playerInventory.Open();
+    player.OpenInventory();
 
-    playerInventory.Remove(medipack, 8);
+    player.RemoveItemFromInventory(medipack, 8);
 
-    playerInventory.Sort(true);
+    player.SortInventory(true);
 
     std::cout << "\n\n";
 
-    playerInventory.Open();
+    player.OpenInventory();
 }

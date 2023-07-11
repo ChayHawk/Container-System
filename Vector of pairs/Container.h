@@ -13,6 +13,8 @@ class Container
         Container(const std::string& name) : mName(name)
         {}
 
+        Container() = default;
+
         void Insert(Item& item, int amount);
         void Remove(Item& item, int amount);
         void Erase(Item& item);

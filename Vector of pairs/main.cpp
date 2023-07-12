@@ -18,18 +18,18 @@ int main()
 
     Player player("Hero", 100);
 
-    player.AddItemToInventory(handgun, 1);
-    player.AddItemToInventory(medipack, 5);
-    player.AddItemToInventory(key, 1);
-    player.AddItemToInventory(map, 1);
-    player.AddItemToInventory(goldBar, 2);
-    player.AddItemToInventory(carKeys, 1);
-    player.AddItemToInventory(hammer, 1);
-    player.AddItemToInventory(money, 56);
+    player.AddToInventory(handgun, 1);
+    player.AddToInventory(medipack, 5);
+    player.AddToInventory(key, 1);
+    player.AddToInventory(map, 1);
+    player.AddToInventory(goldBar, 2);
+    player.AddToInventory(carKeys, 1);
+    player.AddToInventory(hammer, 1);
+    player.AddToInventory(money, 56);
 
     player.OpenInventory();
 
-    player.RemoveItemFromInventory(medipack, 8);
+    player.RemoveFromInventory(medipack, 8);
 
     player.SortInventory(true);
 

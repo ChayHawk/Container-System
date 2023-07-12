@@ -11,9 +11,9 @@ class Player
 		std::string GetName() const;
 		int GetHealth() const;
 
-		void AddItemToInventory(Item& item, int amount);
+		void AddToInventory(Item& item, int amount);
 
-		void RemoveItemFromInventory(Item& item, int amount);
+		void RemoveFromInventory(Item& item, int amount);
 
 		void OpenInventory() const;
 

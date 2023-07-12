@@ -10,12 +10,12 @@ int Player::GetHealth() const
 	return mHealth;
 }
 
-void Player::AddItemToInventory(Item& item, int amount)
+void Player::AddToInventory(Item& item, int amount)
 {
 	mInventory.Insert(item, amount);
 }
 
-void Player::RemoveItemFromInventory(Item& item, int amount)
+void Player::RemoveFromInventory(Item& item, int amount)
 {
 	mInventory.Remove(item, amount);
 }
